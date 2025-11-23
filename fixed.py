@@ -3,8 +3,8 @@ from Crypto.Cipher import AES
 import os
 
 # Configuration
-ESP_IP = "192.168.1.15"  # Replace with the ESP32's IP
-ESP_PORT = 12346  # Replace with the ESP32's listening port
+ESP_IP = "192.168.1.15"  
+ESP_PORT = 12346  
 key = b"1234567890123456"  # 16-byte key for AES
 iv = os.urandom(16)  # Initialization vector for AES-CBC
 
@@ -23,12 +23,12 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((ESP_IP, ESP_PORT))
 
 try:
-    message = b"CRISTIANO RONALDO,12:55:37"  # Your plaintext message
+    message = b"CRISTIANO RONALDO,12:55:37"  # plaintext message
     encrypted_data = encrypt_message(message, key, iv)
     sock.sendall(encrypted_data)
     print("Encrypted data sent.")
 finally:
     sock.close()
 
-# Print the encrypted data for reference (not needed in production)
+# Print the encrypted data for reference
 print("Encrypted Data: ", encrypted_data.hex())
